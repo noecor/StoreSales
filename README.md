@@ -87,3 +87,14 @@ Consideraciones:
 	• Botón de Registrar Venta, que dispare:
 		Alerta para verificar si ya se agregaron todos los componentes (JS), podríamos mostrar, la cantidad de componente y el precio
 		Alerta para indicar que la venta se ha registrado.(JS)
+		
+Branches:
+Para dividir el scope de cada una, decidimos separar los desarrollos tratando de definir cuáles funciones podían o no solaparse, y luego las clasificamos por colores, quedamdo divididas de la siguiente forma:
+
+AMARILLO (addSale, pcPrice, btnNewSale) - Karin
+LILA (monthSeller, monthStore) - Mariana
+AZUL (qtySoldByPiece, mostSoldbyPiece, areThereSales, LocalStorage) - NOE
+GRIS (storeReport,gralReport, monthlyReport)
+
+Quedan pendientes por asignar storeSales y sellerSales
+
