@@ -2,23 +2,23 @@
 Karin + Mariana + Noelia + Sofia
 
 Convenciones:
-	• Estilos en SASS
-	• Js en ES6
-	• Variables, nombradas en inglés y camelCase
-	• Nombres representativos y lo más corto posible, sólo usando abreviaciones de uso general, tipo:
-		○ quantity (qty)
-		○ report (rpt)
-		○ general (gral)
-	• Branch por grupo de funciones similares o relacionadas
-		○ Totales x Parámetro
-		○ Cantidad x Parámetro
-		○ Destacados
-		○ Reportes Generales
-	• Carpetas por grupo de archivos
-		○ Js
-		○ Styles
-		○ Images
-		○ (los html quedarán en el raiz)
+• Estilos en SASS
+• Js en ES6
+• Variables, nombradas en inglés y camelCase
+• Nombres representativos y lo más corto posible, sólo usando abreviaciones de uso general, tipo:
+	○ quantity (qty)
+	○ report (rpt)
+	○ general (gral)
+• Branch por grupo de funciones similares o relacionadas
+	○ Totales x Parámetro
+	○ Cantidad x Parámetro
+	○ Destacados
+	○ Reportes Generales
+• Carpetas por grupo de archivos
+	○ Js
+	○ Styles
+	○ Images
+	○ (los html quedarán en el raiz)
 
 Comenzamos nuestra aplicación con el objeto que registra todos los componentes de las tiendas (stores), incluyendo las ventas de la nueva sucursal, así nos aseguramos que la estructura del mismo soporta la inclusión de una nueva sucursal (store) en caso de que sea necesario
 
@@ -80,13 +80,13 @@ Funciones
 Maquetación:
 Decidimos hacer 3 html (index,sales,reports), donde podamos ver la ejecución de cada una de las funciones dentro de lo que sería más parecido al flujo de una tienda.
 Consideraciones:
-	• Sección de selección de Vendedora/sucursal
-	• Sección de selección de componentes
-	• Muestra de Venta que se esta realizando (tipo lista/tabla), con botón de eliminar componente (JS)
-		○ Se calcula automáticamente el precio total que se va generando en la venta
-	• Botón de Registrar Venta, que dispare:
-		Alerta para verificar si ya se agregaron todos los componentes (JS), podríamos mostrar, la cantidad de componente y el precio
-		Alerta para indicar que la venta se ha registrado.(JS)
+• Sección de selección de Vendedora/sucursal
+• Sección de selección de componentes
+• Muestra de Venta que se esta realizando (tipo lista/tabla), con botón de eliminar componente (JS)
+	○ Se calcula automáticamente el precio total que se va generando en la venta
+• Botón de Registrar Venta, que dispare:
+	Alerta para verificar si ya se agregaron todos los componentes (JS), podríamos mostrar, la cantidad de componente y el precio
+	Alerta para indicar que la venta se ha registrado.(JS)
 		
 Branches:
 Para dividir el scope de cada una, decidimos separar los desarrollos tratando de definir cuáles funciones podían o no solaparse, y luego las clasificamos por colores, quedamdo divididas de la siguiente forma:
