@@ -93,8 +93,8 @@ Para dividir el scope de cada una, decidimos separar los desarrollos tratando de
 
 AMARILLO (addSale, pcPrice, btnNewSale) - Karin
 LILA (monthSeller, monthStore) - Mariana
-AZUL (qtySoldByPiece, mostSoldbyPiece, areThereSales, LocalStorage) - NOE
-GRIS (storeReport,gralReport, monthlyReport)
+AZUL (storeReport,gralReport, monthlyReport) - Sofi
+GRIS (qtySoldByPiece, mostSoldbyPiece, areThereSales, LocalStorage) - Noe
 
 Quedan pendientes por asignar storeSales y sellerSales
 
