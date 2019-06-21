@@ -39,44 +39,58 @@ const store = {
 
 
 // crea las listas  wsz1xw1xde valores para crear los selects de vendedora y sucursal
-// const {sellers: sellersList} = store;
-// const {stores: storesList} = store;
-const [{sellers : sellersList},{stores : storesList}] = store;
-console.log
+const {sellers: sellersList} = store;
+const {stores: storesList} = store;
+// const [{sellers : sellersList},{stores : storesList}] = store;
+var storeProperties = Object.keys(store)
+console.log(storeProperties)
+let selectContent;
+
 
 // crea los selects de la sección que define vendedora y sucursal
-const setSelects = (list, container) => {
-    list.forEach(e => {
+const setSelects = () => {
+    storeProperties.forEach (e => {
+    if (e === 'sellers' || e === "stores") {
+        let container = document.getElementById('primarySelects')
         let select = document.createElement('select')
         select.id = e
         container.appendChild(select)
-        fillSelect(e)
+        selectContent = store[e];
+        console.log(selectContent)
+        debugger;
+        fillSelects(selectContent,select)
+    } else (e === "pieces");{
+        let container = document.getElementById('pieceSelect')
+        let select = document.createElement('select')
+        select.id = e
+        container.appendChild(select)
+        selectContent = store[e]
+        fillSelects(selectContent,select)
+    }
+    // let select = document.createElement('select')
+    // select.id = e
+    // container.appendChild(select)
+    // fillSelect(e)
     })
 }
 
-const fillSelects = list => {
-    list.forEach(e => {
-        let select = document.getElementById(e.type)
-        if (select.childElementCount === 0) {
-            let placeholder = { name: `seleccione plato ${e.type}`, id: '' }
-            select.appendChild(createOption(placeholder))
-        }
-        select.appendChild(createOption(e))
-    })
-}
-
-const createOption = elem => {
-    let option = document.createElement('option')
-    option.innerText = elem.name
-    option.value = elem.id
-    return option
-}
-
-// const setSelects = (selectsList) => {
-//     let container = document.getElementById('selects')
-//     selectsList.forEach(element => {
-        
-//     });
-//     let select = document.createElement('select')
-//     let 
+// const fillSelects = (list,select) => {
+//     debugger;
+//     list.forEach(e => {
+//         let selectToFill = document.getElementById(e.type)
+//         if (selectToFill.childElementCount === 0) {
+//             let placeholder = { name: `seleccione ${e.type}`, id: '' }
+//             selectToFill.appendChild(createOption(placeholder))
+//         }
+//         select.appendChild(createOption(e))
+//     })
 // }
+
+// const createOption = elem => {
+//     let option = document.createElement('option')
+//     option.innerText = elem.name
+//     option.value = elem.id
+//     return option
+// }
+
+
