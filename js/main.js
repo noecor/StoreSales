@@ -37,60 +37,73 @@ const store = {
     stores: ['Centro','Caballito']
     };
 
-
-// crea las listas  wsz1xw1xde valores para crear los selects de vendedora y sucursal
-const {sellers: sellersList} = store;
-const {stores: storesList} = store;
-// const [{sellers : sellersList},{stores : storesList}] = store;
+// creo un array con las propiedades del objeto donde guardo la información de la tienda
 var storeProperties = Object.keys(store)
-console.log(storeProperties)
+// hago la variable de contenido de los selects global para que esté disponible para todas las instancias
 let selectContent;
 
-
-// crea los selects de la sección que define vendedora y sucursal
+// crea los selects de la sección que define vendedora y sucursal y componentes
 const setSelects = () => {
     storeProperties.forEach (e => {
-    if (e === 'sellers' || e === "stores") {
-        let container = document.getElementById('primarySelects')
-        let select = document.createElement('select')
-        select.id = e
-        container.appendChild(select)
-        selectContent = store[e];
-        console.log(selectContent)
-        debugger;
-        fillSelects(selectContent,select)
-    } else (e === "pieces");{
-        let container = document.getElementById('pieceSelect')
-        let select = document.createElement('select')
-        select.id = e
-        container.appendChild(select)
-        selectContent = store[e]
-        fillSelects(selectContent,select)
-    }
-    // let select = document.createElement('select')
-    // select.id = e
-    // container.appendChild(select)
-    // fillSelect(e)
+        if (e === 'sellers' || e === "stores") {
+            let container = document.getElementById('primarySelects')
+            let select = document.createElement('select')
+            select.id = e
+            container.appendChild(select)
+            selectContent = store[e];
+            fillSelects(selectContent,select)
+        } else if (e === "prices"){
+            let container = document.getElementById('pieceSelect')
+            let select = document.createElement('select')
+            select.id = 'pieces'
+            container.appendChild(select)
+            let selectContent = store[e].map(item => item.piece)
+            fillSelects(selectContent,select)
+        }
+    })
+}
+// rellena los selects
+const fillSelects = (list,select) => {
+    list.forEach(e => {
+        // let selectToFill = document.getElementById(e)
+        if (select.childElementCount === 0) {
+            let placeholder = { name: `seleccione ${select.id}`, id: '' }
+            select.appendChild(createOption(placeholder))
+        }
+        let optionItem = {name: e, id:list.indexOf(e) }
+        select.appendChild(createOption(optionItem))
     })
 }
 
-// const fillSelects = (list,select) => {
-//     debugger;
-//     list.forEach(e => {
-//         let selectToFill = document.getElementById(e.type)
-//         if (selectToFill.childElementCount === 0) {
-//             let placeholder = { name: `seleccione ${e.type}`, id: '' }
-//             selectToFill.appendChild(createOption(placeholder))
-//         }
-//         select.appendChild(createOption(e))
-//     })
-// }
+// crea las opciones de cada select
+const createOption = elem => {
+    let option = document.createElement('option')
+    option.innerText = elem.name
+    option.value = elem.id
+    return option
+}
 
-// const createOption = elem => {
-//     let option = document.createElement('option')
-//     option.innerText = elem.name
-//     option.value = elem.id
-//     return option
-// }
+const addBtn = () => {
+    let container = document.getElementById('pieceSelect')
+    let btn = document.createElement('button')
+    btn.innerText = 'Agregar Pieza'
+    btn.id = 'addPiece'
+    btn.onclick = 'addPiece()'
+    container.appendChild(btn)
+}
 
+const setElements = () => {
+    setSelects();
+    addBtn();
+}
 
+const showActualSale = () => {
+
+}
+
+const addPiece = () => {
+    let selectedSeller = document.getElementById('sellers')
+    let selectedStore = document.getElementById('stores')
+    let selectedPiece = document.getElementById('pieces')
+
+}
