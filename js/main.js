@@ -39,41 +39,41 @@ const store = {
 
 
 // crea las listas  wsz1xw1xde valores para crear los selects de vendedora y sucursal
-const {sellers: sellersList} = store;
-const {stores: storesList} = store;
-// const [{sellers : sellersList},{stores : storesList}] = store;
-var storeProperties = Object.keys(store)
-console.log(storeProperties)
-let selectContent;
+// const {sellers: sellersList} = store;
+// const {stores: storesList} = store;
+// // const [{sellers : sellersList},{stores : storesList}] = store;
+// var storeProperties = Object.keys(store)
+// console.log(storeProperties)
+// let selectContent;
 
 
 // crea los selects de la sección que define vendedora y sucursal
-const setSelects = () => {
-    storeProperties.forEach (e => {
-    if (e === 'sellers' || e === "stores") {
-        let container = document.getElementById('primarySelects')
-        let select = document.createElement('select')
-        select.id = e
-        container.appendChild(select)
-        selectContent = store[e];
-        console.log(selectContent)
-        debugger;
-        fillSelects(selectContent,select)
-    } else (e === "pieces");{
-        let container = document.getElementById('pieceSelect')
-        let select = document.createElement('select')
-        select.id = e
-        container.appendChild(select)
-        selectContent = store[e]
-        fillSelects(selectContent,select)
-    }
-    // let select = document.createElement('select')
-    // select.id = e
-    // container.appendChild(select)
-    // fillSelect(e)
-    })
-}
-
+// const setSelects = () => {
+//     storeProperties.forEach (e => {
+//     if (e === 'sellers' || e === "stores") {
+//         let container = document.getElementById('primarySelects')
+//         let select = document.createElement('select')
+//         select.id = e
+//         container.appendChild(select)
+//         selectContent = store[e];
+//         console.log(selectContent)
+//         debugger;
+//         fillSelects(selectContent,select)
+//     } else (e === "pieces");{
+//         let container = document.getElementById('pieceSelect')
+//         let select = document.createElement('select')
+//         select.id = e
+//         container.appendChild(select)
+//         selectContent = store[e]
+//         fillSelects(selectContent,select)
+//     }
+//     // let select = document.createElement('select')
+//     // select.id = e
+//     // container.appendChild(select)
+//     // fillSelect(e)
+//     })
+// }
+//-----------------------------------------------------------------
 // const fillSelects = (list,select) => {
 //     debugger;
 //     list.forEach(e => {
@@ -93,4 +93,29 @@ const setSelects = () => {
 //     return option
 // }
 
+//2. cantidadVentasComponente(componente) = qtySoldByPiece. Calcula la cantidad de Ventas por Componente.
+//     const qtySoldByPiece = () => {
+//         store.sales.forEach (e => {
+//             let piece = sales.find (e => store.sales.pieces)
+//             console.log (e)
+//         })
+// }
+let totalSales = []
+const qtySoldByPiece = component => {
+    let totalSales = []
+    store.sales.forEach(({pieces}) => pieces.forEach (e => totalSales.push(e)))
+    const totalComponent = totalSales.filter(e=>e===component).length
+    return totalComponent
+}
+// imprimo respuesta para dos componentes:
+console.log(qtySoldByPiece("Monitor ASC 543"));
+console.log(qtySoldByPiece("Monitor GPRS 3000"));
 
+
+
+//6. componenteMasVendido() = mostSoldPiece. Calcula cuál fue el componente más vendido.
+
+const mostSoldPiece = () =>{
+    totalSales
+
+}
