@@ -40,7 +40,11 @@ const store = {
 // creo un array con las propiedades del objeto donde guardo la información de la tienda
 var storeProperties = Object.keys(store)
 // hago la variable de contenido de los selects global para que esté disponible para todas las instancias
-let selectContent;
+let selectContent, newSale;
+const monthsNames = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
+const weekDays = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado']
+const piecesList = [{lineId:0,pieceDesc:'',qty:0,price:0,totalPrice:this.qty * this.price}]
+const {prices} = store
 
 // crea los selects de la sección que define vendedora y sucursal y componentes
 const setSelects = () => {
@@ -49,6 +53,7 @@ const setSelects = () => {
             let container = document.getElementById('primarySelects')
             let select = document.createElement('select')
             select.id = e
+            select.setAttribute('onchange',`setSaleElement(this,'saleTopLine')`)
             container.appendChild(select)
             selectContent = store[e];
             fillSelects(selectContent,select)
@@ -62,10 +67,26 @@ const setSelects = () => {
         }
     })
 }
+
+// establezco en pantalla los elementos de la venta
+const setSaleElement = (select,containerId) => {
+    let selectedElement = select.options[select.value].text
+    let container = document.getElementById(containerId)
+    let saleElement = document.createElement('p')
+    saleElement.innerText = selectedElement
+    container.appendChild(saleElement)
+}
+
+const setSaleDate = () => {
+    let actualDate = new Date()
+    let container = document.getElementById('saleDate')
+    let date = document.createElement('p')
+    date.innerText = `${weekDays[actualDate.getDay()]}, ${actualDate.getDate()} de ${monthsNames[actualDate.getMonth()]} de ${actualDate.getFullYear()}`
+    container.appendChild(date)
+}
 // rellena los selects
 const fillSelects = (list,select) => {
     list.forEach(e => {
-        // let selectToFill = document.getElementById(e)
         if (select.childElementCount === 0) {
             let placeholder = { name: `seleccione ${select.id}`, id: '' }
             select.appendChild(createOption(placeholder))
@@ -79,31 +100,63 @@ const fillSelects = (list,select) => {
 const createOption = elem => {
     let option = document.createElement('option')
     option.innerText = elem.name
-    option.value = elem.id
+    option.value = elem.id+1
     return option
 }
 
+// agregar el boton con el que se agregan las piezas a la venta
 const addBtn = () => {
     let container = document.getElementById('pieceSelect')
     let btn = document.createElement('button')
     btn.innerText = 'Agregar Pieza'
     btn.id = 'addPiece'
-    btn.onclick = 'addPiece()'
+    btn.setAttribute("onclick","addPiece()")
     container.appendChild(btn)
 }
+
+
+
+// const setstores = () => {
+//     let selectedStore = document.getElementById('stores')
+//     console.log (selectedStore.value)
+// }
 
 const setElements = () => {
     setSelects();
     addBtn();
+    setSaleDate();
 }
 
 const showActualSale = () => {
 
 }
+// const setKeyArray = (key,elemArr) => {
+//     let keyArr = []
+//     for (key in elemArr) {
+        
+//     }
+// }
+
+const findPrice = (list,elem) =>{
+    debugger;
+    list.forEach(e => {
+        // console.log(e.piece)
+        if (e.piece === elem){
+            let price = e.price
+            console.log(price)
+            }
+    })
+}
+
 
 const addPiece = () => {
-    let selectedSeller = document.getElementById('sellers')
-    let selectedStore = document.getElementById('stores')
-    let selectedPiece = document.getElementById('pieces')
+    let select = document.getElementById('pieces')
+    let selectedPiece = select.options[select.value].text
+    piecesList.lineId = `00${piecesList.length}`
+    piecesList.pieceDesc = selectedPiece
+    piecesList.price = findPrice(prices,selectedPiece)
+    // piecesList.price = prices[prices.findIndex(selectedPiece)].price
+    // console.log (piecesList)
+
 
 }
