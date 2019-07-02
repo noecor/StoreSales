@@ -93,29 +93,101 @@ const store = {
 //     return option
 // }
 
+
+
 //2. cantidadVentasComponente(componente) = qtySoldByPiece. Calcula la cantidad de Ventas por Componente.
+
+const qtySoldByPiece = component => {
+    let totalSales = []
+    store.sales.forEach(({pieces}) => pieces.forEach (e => totalSales.push(e)))
+    const totalSoldComponents = totalSales.filter(e=>e===component).length
+    return totalSoldComponents
+}
+// imprimo respuesta para dos componentes:
+console.log(qtySoldByPiece("Monitor ASC 543"));
+console.log(qtySoldByPiece("Monitor GPRS 3000"));
+
+//6. componenteMasVendido() = mostSoldPiece. Calcula cuál fue el componente más vendido.
+
+const mostSoldPiece = () =>{
+    let soldComponent = []
+    let nameComponent
+    store.prices.forEach(e => {
+        soldComponent.push(qtySoldByPiece(e.piece))
+        mostSoldComponent = Math.max.apply(null, soldComponent)
+        if(qtySoldByPiece(e.piece) === mostSoldComponent){
+        nameComponent = e.piece
+        }
+    })
+    return nameComponent
+    }
+    console.log(mostSoldPiece()); // Monitor GPRS 3000 ó Motherboard ASUS 1200
+
+  
+
+
+//7. huboVentas(mes, anio) = areThereSales. Indica si hubo ventas en un mes determinado.
+
+// const areThereSales = (date) =>{
+//     let dates = []
+//     store.sales.forEach(({saleDate}))  saleDate.filter(e => dates.push)
+// }
+
+
+    //- .map de el atributo del objeto "new date", guardar la info y 
+
+
+
+
+//Intentos fallidos:
+
+  //store.sales.forEach(({pieces})) => pieces.filter((e, i) => pieces.indexOf(e) === i)
+    // let totalSales = []
+    // store.sales.forEach(({pieces}) => pieces.forEach (e => totalSales.push(e)))
+    // let salesByPiece = component => totalSales.filter(item => item===component).length
+
+    // let mostSold = Math.max (...salesByPiece)
+    // console.log(mostSold)
+    // return mostSold
+//}
 //     const qtySoldByPiece = () => {
 //         store.sales.forEach (e => {
 //             let piece = sales.find (e => store.sales.pieces)
 //             console.log (e)
 //         })
 // }
-let totalSales = []
-const qtySoldByPiece = component => {
-    let totalSales = []
-    store.sales.forEach(({pieces}) => pieces.forEach (e => totalSales.push(e)))
-    const totalComponent = totalSales.filter(e=>e===component).length
-    return totalComponent
-}
-// imprimo respuesta para dos componentes:
-console.log(qtySoldByPiece("Monitor ASC 543"));
-console.log(qtySoldByPiece("Monitor GPRS 3000"));
 
+    //let mostSoldPiece = Math.max(...totalSales)
 
+    
+    // let mostSoldPiece = totalSales.math.maxOftotalSales
+    // console.log(getMaxOfArray)
 
-//6. componenteMasVendido() = mostSoldPiece. Calcula cuál fue el componente más vendido.
+    // function getMaxOfArray(totalSales){
+    // return Math.maxOftotalSales
+    // console.log(getMaxOfArray)
 
-const mostSoldPiece = () =>{
-    totalSales
+// let mostSoldPiece = () =>{
+//     get maxOftotalSales.
+// }
 
-}
+//    let algo = qtySoldByPiece("Monitor GPRS 3000")
+// return mostSoldPiece, algo
+
+// let bestSeller = salesList => {
+//     const salesByComponent = salesList.map(({item})=>qtySoldByPiece(item))
+//     const bestNumber = Math.max(...salesByComponent)
+//     let bestSellerList =[]
+//     data.prices.map(({item})=> qtySoldByPiece(item)>= bestNumber ? bestSellerList.push(item) :null)
+//     return bestSellerList
+//     }
+
+// //NEW
+
+//let bestSeller = salesList => {
+//     const salesByComponent = salesList.map(({item})=>{return {item:item, sales:timesSold(item)}})
+    
+//     const bestNumber = Math.max(...salesByComponent.map(({sales})=>sales).flat())
+//     const bestSellerList = salesByComponent.filter(({sales})=> sales>= bestNumber).map(({item})=>item).flat()
+//     return bestSellerList
+//    }
