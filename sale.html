@@ -10,7 +10,7 @@
     <title>Ventas</title>
 </head>
 
-<body onload=" ">
+<body onload="setElements()">
     <header>
         <a href="index.html" class="logo">Logo</a>
         <nav>
@@ -29,7 +29,29 @@
         </section>
         <section id="saleView">
             <h2>Detalles de esta venta</h2>
-            <div id="piecesList">
+            <div id="saleTopLine">
+                <div id="saleDate">
+                    
+                </div>
+
+            </div>
+            <div id="salePieces">
+                <table id="salePiecesTable">
+                    <thead id="piecesChar">
+                        <tr>
+                            <th>Renglón</th>
+                            <th>Descripción</th>
+                            <!-- <th>Precio Unitario</th> -->
+                            <!-- <th>Cantidad</th> -->
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody id="piecesDetails">
+
+                    </tbody>
+                </table>
+            </div>
+            <div id="saleTotal">
 
             </div>
         </section>

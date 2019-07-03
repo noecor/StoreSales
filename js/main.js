@@ -38,8 +38,7 @@ const store = {
     stores: ['Centro', 'Caballito']
 }
 
-/* recorre las ventas de cada vendedora en toda la lista */
-
+/*recorre las piezas vendidas según el mes*/
 const monthSales = (month)=> {
     let monthData = []
     store.pieces.forEach( sale => {
@@ -52,6 +51,7 @@ const initialize = ()=> {
     let mainDiv = document.getElementById('monthSeller')
 }
 
+/* recorre las ventas de cada vendedora en toda la lista */
 const sellerSales = (month, year) =>{
     let sellersData = []
     store.sellers.forEach( seller => {
