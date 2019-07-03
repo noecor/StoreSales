@@ -40,6 +40,18 @@ const store = {
 
 /* recorre las ventas de cada vendedora en toda la lista */
 
+const monthSales = (month)=> {
+    let monthData = []
+    store.pieces.forEach( sale => {
+        let sales = store.sales.filter( sale => sale.pieces === pieces);
+        let totalPieces = monthPieces ( month, year, pieces);
+        monthData.push({piecesName: pieces, total:''})
+    }
+}
+const initialize = ()=> {
+    let mainDiv = document.getElementById('monthSeller')
+}
+
 const sellerSales = (month, year) =>{
     let sellersData = []
     store.sellers.forEach( seller => {
