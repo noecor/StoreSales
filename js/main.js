@@ -37,60 +37,180 @@ const store = {
     stores: ['Centro','Caballito']
     };
 
-
-// crea las listas  wsz1xw1xde valores para crear los selects de vendedora y sucursal
-const {sellers: sellersList} = store;
-const {stores: storesList} = store;
-// const [{sellers : sellersList},{stores : storesList}] = store;
+// creo un array con las propiedades del objeto donde guardo la información de la tienda
 var storeProperties = Object.keys(store)
-console.log(storeProperties)
-let selectContent;
+// hago la variable de contenido de los selects global para que esté disponible para todas las instancias
+let selectContent, newSale;
+const monthsNames = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','aiciembre']
+const weekDays = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado']
+const piecesList = []
+const {prices} = store
 
-
-// crea los selects de la sección que define vendedora y sucursal
+// crea los selects de la sección que define vendedora y sucursal y componentes
 const setSelects = () => {
     storeProperties.forEach (e => {
-    if (e === 'sellers' || e === "stores") {
-        let container = document.getElementById('primarySelects')
-        let select = document.createElement('select')
-        select.id = e
-        container.appendChild(select)
-        selectContent = store[e];
-        console.log(selectContent)
-        debugger;
-        fillSelects(selectContent,select)
-    } else (e === "pieces");{
-        let container = document.getElementById('pieceSelect')
-        let select = document.createElement('select')
-        select.id = e
-        container.appendChild(select)
-        selectContent = store[e]
-        fillSelects(selectContent,select)
-    }
-    // let select = document.createElement('select')
-    // select.id = e
-    // container.appendChild(select)
-    // fillSelect(e)
+        if (e === 'sellers' || e === "stores") {
+            let container = document.getElementById('primarySelects')
+            let select = document.createElement('select')
+            select.id = e
+            select.setAttribute('onchange',`setSaleElement(this,'saleTopLine')`)
+            container.appendChild(select)
+            selectContent = store[e];
+            fillSelects(selectContent,select)
+        } else if (e === "prices"){
+            let container = document.getElementById('pieceSelect')
+            let select = document.createElement('select')
+            select.id = 'pieces'
+            container.appendChild(select)
+            let selectContent = store[e].map(item => item.piece)
+            fillSelects(selectContent,select)
+        }
     })
 }
 
-// const fillSelects = (list,select) => {
-//     debugger;
-//     list.forEach(e => {
-//         let selectToFill = document.getElementById(e.type)
-//         if (selectToFill.childElementCount === 0) {
-//             let placeholder = { name: `seleccione ${e.type}`, id: '' }
-//             selectToFill.appendChild(createOption(placeholder))
-//         }
-//         select.appendChild(createOption(e))
-//     })
-// }
+// establezco en pantalla los elementos de la venta
+const setSaleElement = (select,containerId) => {
+    let selectedElement = select.options[select.value].text
+    let container = document.getElementById(containerId)
+    let saleElement = document.createElement('p')
+    saleElement.setAttribute('id',`act${select.id}`)
+    saleElement.innerText = selectedElement
+    container.appendChild(saleElement)
+}
 
-// const createOption = elem => {
-//     let option = document.createElement('option')
-//     option.innerText = elem.name
-//     option.value = elem.id
-//     return option
-// }
+const setSaleDate = () => {
+    let actualDate = new Date()
+    let container = document.getElementById('saleDate')
+    container.innerHTML=''
+    let date = document.createElement('p')
+    date.innerText = `${weekDays[actualDate.getDay()]}, ${actualDate.getDate()} de ${monthsNames[actualDate.getMonth()]} de ${actualDate.getFullYear()}`
+    container.appendChild(date)
+}
 
+// rellena los selects
+const fillSelects = (list,select) => {
+    list.forEach(e => {
+        if (select.childElementCount === 0) {
+            let placeholder = { name: `seleccione ${select.id}`, id: '' }
+            select.appendChild(createOption(placeholder))
+        }
+        let optionItem = {name: e, id:list.indexOf(e) }
+        select.appendChild(createOption(optionItem))
+    })
+}
 
+// crea las opciones de cada select
+const createOption = elem => {
+    let option = document.createElement('option')
+    option.innerText = elem.name
+    option.value = elem.id+1
+    return option
+}
+
+// agregar el boton con el que se agregan las piezas a la venta
+const addBtn = (containerElem,btnText,btnId,btnAttribute,btnFunction) => {
+    let container = document.getElementById(containerElem)
+    let btn = document.createElement('button')
+    btn.innerText = btnText
+    btn.id = btnId
+    btn.setAttribute(btnAttribute,btnFunction)
+    container.appendChild(btn)
+}
+
+const setElements = () => {
+    setSelects();
+    addBtn('pieceSelect','Agregar Pieza','addPiece','onclick','addPiece()');
+    setSaleDate();
+}
+
+const newSaleTotalPrice = (piecesList) => {
+    // debugger;
+    let saleTotalPrice = 0
+    piecesList.forEach(e => {
+        saleTotalPrice += e.price
+    })
+    return saleTotalPrice   
+}
+
+const showPieceList = (rowContent) => {
+    let container =document.getElementById('piecesDetails')
+    container.innerHTML=''
+    rowContent.forEach(e =>{
+        let c1LineId = e.lineId
+        let c2PieceDesc = e.piece
+        let c3Price = e.price
+        // let rowHtml = '<tr><td>${lineId}</td><td>${pieceDesc}</td><td>${linePrice}</td>'
+        let row = document.createElement('tr')
+        let lineIdCol = document.createElement('td')
+        let pieceCol = document.createElement('td')
+        let priceCol = document.createElement('td')
+        lineIdCol.innerText=c1LineId
+        pieceCol.innerText=c2PieceDesc
+        priceCol.innerText=c3Price
+        row.appendChild(lineIdCol)
+        row.appendChild(pieceCol)
+        row.appendChild(priceCol)       
+        container.appendChild(row)
+    })
+    
+}
+
+const showSaleItems = () => {
+
+    showPieceList(piecesList)
+    let totalContainer = document.getElementById('saleTotal')
+    totalContainer.innerHTML=''
+    let totalPriceItem = document.createElement('p')
+    totalPriceItem.innerText = `Precio Total de la Venta: ${newSaleTotalPrice(piecesList)}`
+    totalContainer.appendChild(totalPriceItem)
+    addBtn('saleTotal','Registrar Venta','btnAddSale','onclick','addSale()')
+}
+
+const findPrice = (list,elem) =>{
+    let pieceToAdd = list.filter(thisPiece => (thisPiece.piece == elem))
+    let price = pieceToAdd[0].price
+    return price
+}
+
+const addPiece = () => {
+    let sale = {lineId:'',piece:'',price:0 }
+    let select = document.getElementById('pieces')
+    let selectedPiece = select.options[select.value].text
+    let id = piecesList.length
+    sale.lineId = `00${++id}`
+    sale.piece = selectedPiece
+    sale.price = findPrice(prices,selectedPiece)    
+    piecesList.push(sale)
+    // console.log(piecesList)
+    showSaleItems()   
+}
+
+const clearOptions = () => {
+    let sellerSelect = document.getElementById('sellers')
+    sellerSelect.value=0
+}
+
+const clearActualSale = () => {
+    // let saleDetails = document.getElementById('piecesDetails')
+    // saleDetails.innerHTML=''
+    // let saleTotal = document.getElementById('saleTotal')
+    // saleTotal.innerHTML=''
+    // setSaleDate()
+    location.reload()
+}
+
+const addSale = () => {    
+    const actualSale = { saleDate: new Date(), seller:'', pieces: [], store: '' }
+    let todayDate = new Date()
+    let todayMonth = todayDate.getMonth()
+    let todayYear = todayDate.getFullYear()
+    let todayDay = todayDate.getDate()
+    actualSale.seller = document.getElementById('actsellers').innerText
+    actualSale.store = document.getElementById('actstores').innerText
+    actualSale.saleDate = new Date (todayYear,todayMonth,todayDay)
+    actualSale.pieces = piecesList.map(e => e.piece)
+    store.sales.push(actualSale)
+    console.log (store.sales)
+    clearOptions()
+    clearActualSale()
+}
