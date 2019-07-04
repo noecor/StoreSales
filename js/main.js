@@ -214,6 +214,8 @@ const addSale = () => {
     clearOptions()
     clearActualSale()
 }
+
+
 //2. cantidadVentasComponente(componente) = qtySoldByPiece. Calcula la cantidad de Ventas por Componente.
 
 const qtySoldByPiece = component => {
@@ -225,6 +227,7 @@ const qtySoldByPiece = component => {
 // imprime respuesta para dos componentes:
 console.log(qtySoldByPiece("Monitor ASC 543"));
 console.log(qtySoldByPiece("Monitor GPRS 3000"));
+
 
 //6. componenteMasVendido() = mostSoldPiece. Calcula cuál fue el componente más vendido.
 
@@ -242,9 +245,9 @@ const mostSoldPiece = () =>{
     }
     console.log(mostSoldPiece()); // Monitor GPRS 3000 ó Motherboard ASUS 1200
 
-  
 
 //7. huboVentas(mes, anio) = areThereSales. Indica si hubo ventas en un mes determinado.
+
 const areThereSales = (year,month)=> {
     const togetMonth=month-1
     const hubo= store.sales.find(({saleDate})=>togetMonth===saleDate.getMonth()&&year===saleDate.getFullYear())
