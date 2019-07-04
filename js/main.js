@@ -214,6 +214,8 @@ const addSale = () => {
     clearOptions()
     clearActualSale()
 }
+
+
 //2. cantidadVentasComponente(componente) = qtySoldByPiece. Calcula la cantidad de Ventas por Componente.
 
 const qtySoldByPiece = component => {
