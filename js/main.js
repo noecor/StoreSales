@@ -103,7 +103,7 @@ const qtySoldByPiece = component => {
     const totalSoldComponents = totalSales.filter(e=>e===component).length
     return totalSoldComponents
 }
-// imprimo respuesta para dos componentes:
+// imprime respuesta para dos componentes:
 console.log(qtySoldByPiece("Monitor ASC 543"));
 console.log(qtySoldByPiece("Monitor GPRS 3000"));
 
@@ -114,7 +114,7 @@ const mostSoldPiece = () =>{
     let nameComponent
     store.prices.forEach(e => {
         soldComponent.push(qtySoldByPiece(e.piece))
-        mostSoldComponent = Math.max.apply(null, soldComponent)
+        mostSoldComponent = Math.max(soldComponent)
         if(qtySoldByPiece(e.piece) === mostSoldComponent){
         nameComponent = e.piece
         }
@@ -125,124 +125,14 @@ const mostSoldPiece = () =>{
 
   
 
-
 //7. huboVentas(mes, anio) = areThereSales. Indica si hubo ventas en un mes determinado.
-
-const areThereSales = (month, year) =>{
-    return salesMonth (month, year) > 0;
+const areThereSales = (year,month)=> {
+    const togetMonth=month-1
+    const hubo= store.sales.find(({saleDate})=>togetMonth===saleDate.getMonth()&&year===saleDate.getFullYear())
+    hubo?console.log(`Hubo ventas en el mes ${month} de ${year}`)
+        :console.log(`No hubo ventas en el mes ${month} de ${year}`)
 }
-    console.log ('hubo ventas?:', areThereSales (3,2019));
-    for ( let index = 0; index < localStorage.sales.length; index++){
-        localStorage.sales[index].store = 'Centro'
-    }
-    console.log (store.sales)
-    store.sales.forEach (sold => {
-        sold.store ='Centro';
-    })
-    console.log(store.sales)
-
-const monthSales = (month, year) => {
-    let sumMonth = 0
-    for (let index = 0; index < local.sales.length; index++){
-        let components = local.sales[index].components
-        if (store.sales[index].date.getMonth() + 1 == month && franchise.sales[index].date.getFullYear() == year){
-            totalMonth = totalMonth + machinePrice(components)
-        }
-    }
-    return sumMonth
-}
-console.log (salesMonth (1,2019));
-
-// const salesMonth = (month, year) => {
-//     let sumMonth = 0
-//     for (let index = 0; index < franchise.sales.length; index++) {
-//         let components = franchise.sales[index].components
-//         if (franchise.sales[index].date.getMonth() + 1 == month && franchise.sales[index].date.getFullYear() == year) {
-//             sumMonth = sumMonth + machinePrice(components)
-//         }
-    
-//     }
-//     return sumMonth
-//     }
-//     console.log(salesMonth(1, 2019)); // 1250
-
-
-//     let dates = []
-//     store.sales.forEach(({saleDate}))  saleDate.filter(e => dates.push)
-// }
-    //- .map de el atributo del objeto "new date", guardar la info y 
-
-//1-g
-
-// const wereThereSales = (month, year) => {
-//     return salesMonth(month, year) > 0;
-//     }
-//     console.log('hubo ventas?:' , wereThereSales(3, 2019));
-//     for (let index = 0; index < franchise.sales.length; index++) {
-//       franchise.sales[index].sucursal = 'Centro'
-//   }
-//   console.log(franchise.sales)
-//   franchise.sales.forEach(sold => {
-//     sold.branch = 'Centro';
-//   });
-//   console.log(franchise.sales);
-
-
-//Intentos fallidos:
-
-  //store.sales.forEach(({pieces})) => pieces.filter((e, i) => pieces.indexOf(e) === i)
-    // let totalSales = []
-    // store.sales.forEach(({pieces}) => pieces.forEach (e => totalSales.push(e)))
-    // let salesByPiece = component => totalSales.filter(item => item===component).length
-
-    // let mostSold = Math.max (...salesByPiece)
-    // console.log(mostSold)
-    // return mostSold
-//}
-//     const qtySoldByPiece = () => {
-//         store.sales.forEach (e => {
-//             let piece = sales.find (e => store.sales.pieces)
-//             console.log (e)
-//         })
-// }
-
-    //let mostSoldPiece = Math.max(...totalSales)
-
-    
-    // let mostSoldPiece = totalSales.math.maxOftotalSales
-    // console.log(getMaxOfArray)
-
-    // function getMaxOfArray(totalSales){
-    // return Math.maxOftotalSales
-    // console.log(getMaxOfArray)
-
-// let mostSoldPiece = () =>{
-//     get maxOftotalSales.
-// }
-
-//    let algo = qtySoldByPiece("Monitor GPRS 3000")
-// return mostSoldPiece, algo
-
-// let bestSeller = salesList => {
-//     const salesByComponent = salesList.map(({item})=>qtySoldByPiece(item))
-//     const bestNumber = Math.max(...salesByComponent)
-//     let bestSellerList =[]
-//     data.prices.map(({item})=> qtySoldByPiece(item)>= bestNumber ? bestSellerList.push(item) :null)
-//     return bestSellerList
-//     }
-
-// //NEW
-
-//let bestSeller = salesList => {
-//     const salesByComponent = salesList.map(({item})=>{return {item:item, sales:timesSold(item)}})
-    
-//     const bestNumber = Math.max(...salesByComponent.map(({sales})=>sales).flat())
-//     const bestSellerList = salesByComponent.filter(({sales})=> sales>= bestNumber).map(({item})=>item).flat()
-//     return bestSellerList
-//    }
-
-//Ejercicio
-var playlist = ["Concrete and Gold", "The Line", "Sunday Rain", "Happy Ever After (Zero Hour)", "Arrows", "Dirty Water", "La Dee Da", "The Sky Is a Neighborhood", "Make It Right", "Run", "T-Shirt"];
-playlist.forEach(function (value) {
-    console.log(value);
-  });
+//imprime resultado
+const anio=2019
+const mes =3
+areThereSales (anio,mes)
