@@ -128,15 +128,64 @@ const mostSoldPiece = () =>{
 
 //7. huboVentas(mes, anio) = areThereSales. Indica si hubo ventas en un mes determinado.
 
-// const areThereSales = (date) =>{
+const areThereSales = (month, year) =>{
+    return salesMonth (month, year) > 0;
+}
+    console.log ('hubo ventas?:', areThereSales (3,2019));
+    for ( let index = 0; index < localStorage.sales.length; index++){
+        localStorage.sales[index].store = 'Centro'
+    }
+    console.log (store.sales)
+    store.sales.forEach (sold => {
+        sold.store ='Centro';
+    })
+    console.log(store.sales)
+
+const monthSales = (month, year) => {
+    let sumMonth = 0
+    for (let index = 0; index < local.sales.length; index++){
+        let components = local.sales[index].components
+        if (store.sales[index].date.getMonth() + 1 == month && franchise.sales[index].date.getFullYear() == year){
+            totalMonth = totalMonth + machinePrice(components)
+        }
+    }
+    return sumMonth
+}
+console.log (salesMonth (1,2019));
+
+// const salesMonth = (month, year) => {
+//     let sumMonth = 0
+//     for (let index = 0; index < franchise.sales.length; index++) {
+//         let components = franchise.sales[index].components
+//         if (franchise.sales[index].date.getMonth() + 1 == month && franchise.sales[index].date.getFullYear() == year) {
+//             sumMonth = sumMonth + machinePrice(components)
+//         }
+    
+//     }
+//     return sumMonth
+//     }
+//     console.log(salesMonth(1, 2019)); // 1250
+
+
 //     let dates = []
 //     store.sales.forEach(({saleDate}))  saleDate.filter(e => dates.push)
 // }
-
-
     //- .map de el atributo del objeto "new date", guardar la info y 
 
+//1-g
 
+// const wereThereSales = (month, year) => {
+//     return salesMonth(month, year) > 0;
+//     }
+//     console.log('hubo ventas?:' , wereThereSales(3, 2019));
+//     for (let index = 0; index < franchise.sales.length; index++) {
+//       franchise.sales[index].sucursal = 'Centro'
+//   }
+//   console.log(franchise.sales)
+//   franchise.sales.forEach(sold => {
+//     sold.branch = 'Centro';
+//   });
+//   console.log(franchise.sales);
 
 
 //Intentos fallidos:
@@ -191,3 +240,9 @@ const mostSoldPiece = () =>{
 //     const bestSellerList = salesByComponent.filter(({sales})=> sales>= bestNumber).map(({item})=>item).flat()
 //     return bestSellerList
 //    }
+
+//Ejercicio
+var playlist = ["Concrete and Gold", "The Line", "Sunday Rain", "Happy Ever After (Zero Hour)", "Arrows", "Dirty Water", "La Dee Da", "The Sky Is a Neighborhood", "Make It Right", "Run", "T-Shirt"];
+playlist.forEach(function (value) {
+    console.log(value);
+  });
