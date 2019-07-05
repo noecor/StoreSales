@@ -58,7 +58,7 @@ let monthSales = (year, month) =>
 //probando
 const mes= 1
 const anio=2019
-console.log(`(2) Las ventas del mes ${mes} de ${anio} ascienden a ARS ${monthSales(anio,mes)}`)
+console.log(`(2) Las ventas del mes ${mes} de ${anio} son ARS ${monthSales(anio,mes)}`)
 
 //3.vendedoraDelMes(mes, año)
 let sellerMonth = (year, month) => {
