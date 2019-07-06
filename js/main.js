@@ -47,13 +47,13 @@ const piecesList = []
 const {prices} = store
 
 //1.precioMaquina(componentes): 
-let pcPrice = sale => sale.length>0?sale.map(e => store.prices.find(({piece}) => e === piece).price).reduce((a,b)=>a+b):0
+const pcPrice = sale => sale.length>0?sale.map(e => store.prices.find(({piece}) => e === piece).price).reduce((a,b)=>a+b):0
 //probando
 const maquina = ["Monitor GPRS 3000", "Monitor GPRS 3000"]
 console.log(`(1) La venta de ${maquina} tiene un valor total de ARS ${pcPrice(maquina)}`)
 
 //2.ventasMes(mes, año)
-let monthSales = (year, month) => 
+const monthSales = (year, month) => 
   pcPrice(store.sales.filter(({saleDate})=>saleDate.getFullYear()===year && saleDate.getMonth()===month-1).map(({pieces})=>pieces).flat())
 //probando
 const mes= 1
@@ -61,13 +61,13 @@ const anio=2019
 console.log(`(2) Las ventas del mes ${mes} de ${anio} son ARS ${monthSales(anio,mes)}`)
 
 //3.vendedoraDelMes(mes, año)
-let sellerMonth = (year, month) => {
-    const monthSales = store.sales.filter(({saleDate})=>saleDate.getFullYear()===year && saleDate.getMonth()===month-1)
-    const sellerMonth =store.sellers.map(name =>{
+const sellerMonth = (year, month) => {
+    let monthSales = store.sales.filter(({saleDate})=>saleDate.getFullYear()===year && saleDate.getMonth()===month-1)
+    let sellerMonth =store.sellers.map(name =>{
       return { name:name, sales:pcPrice(monthSales.filter(({seller})=>seller===name).map(({pieces})=>pieces).flat())}
     })
-   const bestSale = Math.max(...sellerMonth.map(({sales})=>sales).flat())
-   const sellerSalesList = sellerMonth.filter(({sales})=> sales>= bestSale).map(({name})=>name).flat()
+   let bestSale = Math.max(...sellerMonth.map(({sales})=>sales).flat())
+   let sellerSalesList = sellerMonth.filter(({sales})=> sales>= bestSale).map(({name})=>name).flat()
     return sellerSalesList
     }
 //probando
@@ -75,16 +75,16 @@ const anio2=2019
 const mes2=2
 console.log (`(3) La mejor vendedora del mes ${mes2} de ${anio2} es ${sellerMonth(anio2,mes2)}`)
 
-//4.vendedoraDelMes(mes, año)
-let storeMonth = (year, month) => {
-    const monthSales = store.sales.filter(({saleDate})=>saleDate.getFullYear()===year && saleDate.getMonth()===month-1)
-    const storeMonth =store.stores.map(name =>{
+//4.sucursalDelMes(mes, año)
+const storeMonth = (year, month) => {
+    let monthSales = store.sales.filter(({saleDate})=>saleDate.getFullYear()===year && saleDate.getMonth()===month-1)
+    let storeMonth =store.stores.map(name =>{
       return { name:name, sales:pcPrice(monthSales.filter(({store})=>store===name).map(({pieces})=>pieces).flat())}
     })
-   const bestSale = Math.max(...storeMonth.map(({sales})=>sales).flat())
-   const storeSalesList = storeMonth.filter(({sales})=> sales>= bestSale).map(({name})=>name).flat()
-    return storeSalesList
-    }
+   let bestSale = Math.max(...storeMonth.map(({sales})=>sales).flat())
+   let storeSalesList = storeMonth.filter(({sales})=> sales>= bestSale).map(({name})=>name).flat()
+    return storeSalesList 
+}
 //probando
 const anio3=2019
 const mes3=1
