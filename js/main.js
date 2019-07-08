@@ -53,8 +53,7 @@ const maquina = ["Monitor GPRS 3000", "Monitor GPRS 3000"]
 console.log(`(1) La venta de ${maquina} tiene un valor total de ARS ${pcPrice(maquina)}`)
 
 //2.ventasMes(mes, año)
-const monthSales = (year, month) => 
-  pcPrice(store.sales.filter(({saleDate})=>saleDate.getFullYear()===year && saleDate.getMonth()===month-1).map(({pieces})=>pieces).flat())
+const monthSales = (year, month) => pcPrice(store.sales.filter(({saleDate})=>saleDate.getFullYear()===year && saleDate.getMonth()===month-1).map(({pieces})=>pieces).flat())
 //probando
 const mes= 1
 const anio=2019
@@ -89,4 +88,96 @@ const storeMonth = (year, month) => {
 const anio3=2019
 const mes3=1
 console.log (`(4) La mejor sucursal del mes ${mes3} de ${anio3} es ${storeMonth(anio3,mes3)}`)
+
+//SELECTORES Y BOTONES DE REPORT.HTML
+
+//I.-Crear Opcion
+const createOption = comp => {
+  typeof comp === "object" ? e = comp.item : e = comp
+  const option = document.createElement("option")
+  option.innerText = e
+  option.value = e
+  return option
+}
+
+//II.- Rellenar Select
+const fillSelects = (list, secondSelect) => {
+  const select = document.getElementById(secondSelect)
+  list.forEach(e => {
+    if (!select.childElementCount) {
+      const placeholder = {
+        item: `Seleccione`,
+        id: ""
+      }
+      select.appendChild(createOption(placeholder))
+    }
+    select.appendChild(createOption(e))
+  })
+}
+
+//III.-Armado de input
+const newInput = () => {
+  const input = {
+    pieces: undefined,
+    seller: undefined,
+    store: undefined,
+    year: undefined,
+    month: undefined
+  }
+  //DOM
+  input.seller = document.getElementById("seller").value
+  input.store = document.getElementById("store").value
+  input.pieces = document.getElementById("pieces").value
+  const auxDate = new Date(document.getElementById("year").value)
+  input.year = auxDate.getFullYear()
+  input.month = auxDate.getMonth() + 1
+  return input
+}
+
+//IV.- Imprime resultados
+const outputReport = (output, contain) => {
+  const container = document.getElementById(contain)
+  container.innerHTML = ""
+  container.innerText = output
+}
+
+//V.- Botones
+//Ventas Mes
+const btnMonthSales = e => {
+  outputReport(`Las ventas del mes son ARS ${monthSales(newInput(e).year,newInput(e).month)}`, "result")
+}
+
+//Vendedora del mes
+const btnSellerMonth = e => {
+  const aux = sellerMonth(newInput(e).year, newInput(e).month)
+  if (anySales(newInput(e).year, newInput(e).month)) {
+    if (aux.length < 2) {
+      outputReport(`(ﾉ◕ヮ◕)ﾉ*.✧ ${aux}`, "result")
+    } else {
+      outputReport(`¡EMPATE! ᕙ(͡°‿ ͡°)ᕗ ${aux.join(`, `)}`, "result")
+    }
+  } else {
+    outputReport(`(ノಠ益ಠ)ノ彡┻━┻ NO HUBO VENTAS`, "result")
+  }
+}
+//Sucursal del mes
+const btnStoreMonth = e => {
+  const aux = storeMonth(newInput(e).year, newInput(e).month)
+  if (anySales(newInput(e).year, newInput(e).month)) {
+    if (aux.length < 2) {
+      outputReport(`La sucursal del mes fue ${aux}`, "result")
+    } else {
+      outputReport(`¡EMPATE! ᕙ(͡°‿ ͡°)ᕗ ${aux}`, "result")
+    }
+  } else {
+    outputReport(`(ノಠ益ಠ)ノ彡┻━┻ NO HUBO VENTAS`, "result")
+  }
+}
+
+//inicialización del programa
+const initialize = () => {
+  fillSelects(store.pieces, "piece")
+  fillSelects(store.seller, "seller")
+  fillSelects(store.store, "store")
+}
 

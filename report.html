@@ -10,7 +10,7 @@
     <title>Report</title>
 </head>
 
-<body onload=" ">
+<body onload="initialize()">
     <header>
         <a href="index.html" class="logo">Logo</a>
         <nav>
@@ -22,11 +22,19 @@
     </header>
     <div class='container'>
         <section class='monthSale'>
-          <div class='selection'>
-              <h2>VENTAS POR MES</h2>
-              <select id='monthSelect' placeholder="Mes"></select>
-              <select id= 'yearSelect' placeholder="AÑO"></select>
-          </div>
+            <div class="monthResult">
+                <form id="date">
+                    <input type="date" name="year" id="year" placeholder="mm/dd/aaaa" class="dateInput">
+                </form>
+                <nav class="monthReport">
+                    <button type="button" class="btn btn-MonthSales" onclick="btnMonthSales()">Ventas del
+                        Mes</button>
+                    <button type="button" class="btn btn-SellerMonth" onclick="btnSellerMonth()">Vendedora del
+                        Mes</button>
+                    <button type="button" class="btn btn-StoreMonth" onclick="btnStoreMonth()">Sucursal del
+                        Mes</button>
+                </nav>
+                <div class="result" id="contain"></div>
         </section>
     </div>
     <footer>
@@ -37,5 +45,4 @@
         </nav>
     </footer>
 </body>
-
 </html>
