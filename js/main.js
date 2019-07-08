@@ -255,6 +255,6 @@ const areThereSales = (year,month)=> {
         :console.log(`No hubo ventas en el mes ${month} de ${year}`)
 }
 //imprime resultado
-const anio=2019
-const mes =3
-areThereSales (anio,mes)
+const year=2019
+const month =3
+areThereSales (year,month)
