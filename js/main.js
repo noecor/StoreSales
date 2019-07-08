@@ -211,10 +211,19 @@ const addSale = () => {
     actualSale.pieces = piecesList.map(e => e.piece)
     store.sales.push(actualSale)
     console.log (store.sales)
+
+    let aux = JSON.stringify(actualSale)
+    window.localStorage.setItem('actualSale', aux)
+
     clearOptions()
     clearActualSale()
 }
 
+// Chequea Local Storage
+const checkStorage = () => {
+    let storedSales = window.localStorage.getItem('actualSale')
+    console.log(storedSales)
+}
 
 //2. cantidadVentasComponente(componente) = qtySoldByPiece. Calcula la cantidad de Ventas por Componente.
 
@@ -258,3 +267,4 @@ const areThereSales = (year,month)=> {
 const year=2019
 const month =3
 areThereSales (year,month)
+
