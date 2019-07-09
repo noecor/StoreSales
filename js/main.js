@@ -268,3 +268,28 @@ const year=2019
 const month =3
 areThereSales (year,month)
 
+
+//OBTIENE LAS VENTAS TOTALES REALIZADAS POR UNA SUCURSAL
+
+const storeSales = (store) =>{
+    store.sales.forEach( sale => {
+        if(sale.store === store){
+            let salePieces = sale.pieces
+            let salePrice = pcPrice(salePieces)
+            totalStoreSales += salePrice
+        }
+    })
+    return totalStoreSales
+  }
+
+  
+  //importe total vendido por sucursal
+
+  const storeReport = sucursal => {
+    let totalSales = 0;
+    for (const sales of store.sales) {
+    if (sales.store === store) {
+    totalSales += pcPrice(sales.piece);
+    }
+    }
+    return totalSales;
