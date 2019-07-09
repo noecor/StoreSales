@@ -123,7 +123,7 @@ const setElements = () => {
     setSaleDate();
 }
 
-const newSaleTotalPrice = (piecesList) => {
+const pcPrice = (piecesList) => {
     // debugger;
     let saleTotalPrice = 0
     piecesList.forEach(e => {
@@ -161,7 +161,7 @@ const showSaleItems = () => {
     let totalContainer = document.getElementById('saleTotal')
     totalContainer.innerHTML=''
     let totalPriceItem = document.createElement('p')
-    totalPriceItem.innerText = `Precio Total de la Venta: ${newSaleTotalPrice(piecesList)}`
+    totalPriceItem.innerText = `Precio Total de la Venta: ${pcPrice(piecesList)}`
     totalContainer.appendChild(totalPriceItem)
     addBtn('saleTotal','Registrar Venta','btnAddSale','onclick','addSale()')
 }
@@ -191,12 +191,8 @@ const clearOptions = () => {
 }
 
 const clearActualSale = () => {
-    // let saleDetails = document.getElementById('piecesDetails')
-    // saleDetails.innerHTML=''
-    // let saleTotal = document.getElementById('saleTotal')
-    // saleTotal.innerHTML=''
-    // setSaleDate()
-    location.reload()
+    // esto funciona para reiniciar la página pero si no hay local storage pierde la venta añadida
+    location.reload() 
 }
 
 const addSale = () => {    
@@ -210,6 +206,7 @@ const addSale = () => {
     actualSale.saleDate = new Date (todayYear,todayMonth,todayDay)
     actualSale.pieces = piecesList.map(e => e.piece)
     store.sales.push(actualSale)
+    debugger;
     console.log (store.sales)
     clearOptions()
     clearActualSale()
