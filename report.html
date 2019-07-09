@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link type="text/css" rel="stylesheet" href="styles/style.css">
-    <script src="main.js" type="text/javascript"></script>
+    <script src="js/main.js" type="text/javascript"></script>
     <title>Report</title>
 </head>
 
-<body onload=" ">
+<body onload="initialize()">
     <header>
         <a href="index.html" class="logo">Logo</a>
         <nav>
@@ -21,8 +21,23 @@
         </nav>
     </header>
     <div class='container'>
-        <section>
-
+        <section class='monthSale'>
+            <div class="monthResult">
+                <form id="date">
+                    <select id="pieces" id="pieceSelect" class="dateInput"></select>
+                    <select id="sellers" id="secondSelect" class="dateInput"></select>
+                    <select id="store" id="secondSelect" class="dateInput"></select>
+                    <input type="date" name="year" id="year" placeholder="mm/dd/aaaa" class="dateInput">
+                </form>
+                <nav class="monthReport">
+                    <button type="button" class="btn btn-MonthSales" onclick="btnMonthSales()">Ventas del
+                        Mes</button>
+                    <button type="button" class="btn btn-SellerMonth" onclick="btnSellerMonth()">Vendedora del
+                        Mes</button>
+                    <button type="button" class="btn btn-StoreMonth" onclick="btnStoreMonth()">Sucursal del
+                        Mes</button>
+                </nav>
+                <div class="result" id="contain"></div>
         </section>
     </div>
     <footer>
@@ -33,5 +48,4 @@
         </nav>
     </footer>
 </body>
-
 </html>
