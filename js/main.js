@@ -45,6 +45,8 @@ const monthsNames = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','A
 const weekDays = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado']
 const piecesList = []
 const {prices} = store
+let saleTotalPrice = 0
+let totalSalesSeller = 0
 
 // crea los selects de la sección que define vendedora y sucursal y componentes
 const setSelects = () => {
@@ -125,11 +127,11 @@ const setElements = () => {
 
 const pcPrice = (piecesList) => {
     // debugger;
-    let saleTotalPrice = 0
+    saleTotalPrice = 0
     piecesList.forEach(e => {
         saleTotalPrice += e.price
     })
-    return saleTotalPrice   
+    return saleTotalPrice
 }
 
 const showPieceList = (rowContent) => {
@@ -209,8 +211,8 @@ const addSale = () => {
     debugger;
     console.log (store.sales)
 
-    let aux = JSON.stringify(actualSale)
-    window.localStorage.setItem('actualSale', aux)
+    let aux = JSON.stringify(store)
+    window.localStorage.setItem('store', aux)
 
     clearOptions()
     clearActualSale()
@@ -218,8 +220,13 @@ const addSale = () => {
 
 // Chequea Local Storage
 const checkStorage = () => {
-    let storedSales = window.localStorage.getItem('actualSale')
+    let storedSales = window.localStorage.getItem('store')
     console.log(storedSales)
+}
+
+const loadLocalStorage = storedItem => {
+    let retrievedItem = window.localStorage.getItem(storedItem)
+    jsItem = JSON.parse(retrievedItem)
 }
 
 //2. cantidadVentasComponente(componente) = qtySoldByPiece. Calcula la cantidad de Ventas por Componente.
@@ -265,3 +272,14 @@ const year=2019
 const month =3
 areThereSales (year,month)
 
+// funcion para calcular el total de ventas por vendedora
+const sellerSales = (seller) =>{
+    store.sales.forEach( sale => { 
+        if(sale.seller === seller){
+            let salePieces = sale.pieces
+            let salePrice = pcPrice(salePieces)
+            totalSalesSeller += salePrice
+        }
+    })
+    return totalSalesSeller
+  }
