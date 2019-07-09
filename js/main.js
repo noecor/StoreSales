@@ -191,3 +191,72 @@ const initialize = () => {
   setSecondSelects(store.stores, "bstore")
 }
 
+const addSale = () => {    
+    const actualSale = { saleDate: new Date(), seller:'', pieces: [], store: '' }
+    let todayDate = new Date()
+    let todayMonth = todayDate.getMonth()
+    let todayYear = todayDate.getFullYear()
+    let todayDay = todayDate.getDate()
+    actualSale.seller = document.getElementById('actsellers').innerText
+    actualSale.store = document.getElementById('actstores').innerText
+    actualSale.saleDate = new Date (todayYear,todayMonth,todayDay)
+    actualSale.pieces = piecesList.map(e => e.piece)
+    store.sales.push(actualSale)
+    console.log (store.sales)
+
+    let aux = JSON.stringify(actualSale)
+    window.localStorage.setItem('actualSale', aux)
+
+    clearOptions()
+    clearActualSale()
+}
+
+// Chequea Local Storage
+const checkStorage = () => {
+    let storedSales = window.localStorage.getItem('actualSale')
+    console.log(storedSales)
+}
+
+//2. cantidadVentasComponente(componente) = qtySoldByPiece. Calcula la cantidad de Ventas por Componente.
+
+const qtySoldByPiece = component => {
+    let totalSales = []
+    store.sales.forEach(({pieces}) => pieces.forEach (e => totalSales.push(e)))
+    const totalSoldComponents = totalSales.filter(e=>e===component).length
+    return totalSoldComponents
+}
+// imprime respuesta para dos componentes:
+console.log(qtySoldByPiece("Monitor ASC 543"));
+console.log(qtySoldByPiece("Monitor GPRS 3000"));
+
+
+//6. componenteMasVendido() = mostSoldPiece. Calcula cuál fue el componente más vendido.
+
+const mostSoldPiece = () =>{
+    let soldComponent = []
+    let nameComponent
+    store.prices.forEach(e => {
+        soldComponent.push(qtySoldByPiece(e.piece))
+        mostSoldComponent = Math.max(soldComponent)
+        if(qtySoldByPiece(e.piece) === mostSoldComponent){
+        nameComponent = e.piece
+        }
+    })
+    return nameComponent
+    }
+    console.log(mostSoldPiece()); // Monitor GPRS 3000 ó Motherboard ASUS 1200
+
+
+//7. huboVentas(mes, anio) = areThereSales. Indica si hubo ventas en un mes determinado.
+
+const areThereSales = (year,month)=> {
+    const togetMonth=month-1
+    const hubo= store.sales.find(({saleDate})=>togetMonth===saleDate.getMonth()&&year===saleDate.getFullYear())
+    hubo?console.log(`Hubo ventas en el mes ${month} de ${year}`)
+        :console.log(`No hubo ventas en el mes ${month} de ${year}`)
+}
+//imprime resultado
+const year=2019
+const month =3
+areThereSales (year,month)
+
