@@ -262,3 +262,22 @@ const year=2019
 const month =3
 areThereSales (year,month)
 
+//Mejor vendedora histórica
+let bestSeller = () =>{
+  const girl = store.sellers.map(name =>{
+    return { name:name, sales:pcPrice(store.sales.filter(({seller})=>seller===name).map(({pieces})=>pieces).flat())}
+  })
+  const bestGirl = Math.max(...girl.map(({sales})=>sales).flat())
+  const a = girl.filter(({sales})=> sales>= bestGirl).map(({name})=>name).flat()
+  return a
+}
+//probando
+console.log(`(10)La mejor vendedora de la historia es ${bestSeller()}`)
+
+//ventasVendedora(nombre)
+const sellerSales = name => 
+  pcPrice(store.sales.filter(({seller})=>seller===name).map(({pieces})=> pieces).flat())
+
+//probando
+const nombre = "Ada"
+console.log(`(sales) Las ventas desde el inicio de ${nombre} son ARS ${sellerSales(nombre)}`)
