@@ -1,41 +1,43 @@
-const store = {
-    sellers: ["Ada", "Grace", "Hedy", "Sheryl"],
-    sales: [
-        // tener en cuenta que Date guarda los meses del 0 (enero) al 11 (diciembre)
-        { saleDate: new Date(2019, 1, 4), seller: "Grace", pieces: ["Monitor GPRS 3000", "Motherboard ASUS 1500"], store: 'Centro' },
-        { saleDate: new Date(2019, 0, 1), seller: "Ada", pieces: ["Monitor GPRS 3000", "Motherboard ASUS 1500"], store: 'Centro' },
-        { saleDate: new Date(2019, 0, 2), seller: "Grace", pieces: ["Monitor ASC 543", "Motherboard MZI"], store: 'Centro' },
-        { saleDate: new Date(2019, 0, 10), seller: "Ada", pieces: ["Monitor ASC 543", "Motherboard ASUS 1200"], store: 'Centro' },
-        { saleDate: new Date(2019, 0, 12), seller: "Grace", pieces: ["Monitor GPRS 3000", "Motherboard ASUS 1200"], store: 'Centro' },
-        { saleDate: new Date(2019, 1, 12), seller: "Hedy", pieces: ["Monitor GPRS 3000", "HDD Toshiba"], store: 'Centro' }, 
-        { saleDate: new Date(2019, 1, 24), seller: "Shery", pieces: ["Motherboard ASUS 1200", "HDD Western Digital"], store: 'Caballito' },
-        { saleDate: new Date(2019, 1, 1), seller: "Ada", pieces: ["Motherboard MZI", "RAM Kingston Fury"], store: 'Centro' },
-        { saleDate: new Date(2019, 1, 11), seller: "Grace", pieces: ["Monitor ASC 543", "RAM Kingston"], store: 'Caballito' },
-        { saleDate: new Date(2019, 1, 15), seller: "Ada", pieces: ["Motherboard ASUS 1200", "RAM Kingston Fury"], store: 'Centro' },
-        { saleDate: new Date(2019, 1, 12), seller: "Hedy", pieces: ["Motherboard ASUS 1500", "HDD Toshiba"], store: 'Caballito' },
-        { saleDate: new Date(2019, 1, 21), seller: "Grace", pieces: ["Motherboard MZI", "RAM Kingston"], store: 'Centro' },
-        { saleDate: new Date(2019, 1, 8), seller: "Sheryl", pieces: ["Monitor ASC 543", "HDD Western Digital"], store: 'Centro' },
-        { saleDate: new Date(2019, 1, 16), seller: "Sheryl", pieces: ["Monitor GPRS 3000", "RAM Kingston Fury"], store: 'Centro' },
-        { saleDate: new Date(2019, 1, 27), seller: "Hedy", pieces: ["Motherboard ASUS 1200", "HDD Toshiba"], store: 'Caballito' },
-        { saleDate: new Date(2019, 1, 22), seller: "Grace", pieces: ["Monitor ASC 543", "HDD Western Digital"], store: 'Centro' },
-        { saleDate: new Date(2019, 1, 5), seller: "Ada", pieces: ["Motherboard ASUS 1500", "RAM Kingston"], store: 'Centro' },
-        { saleDate: new Date(2019, 1, 1), seller: "Grace", pieces: ["Motherboard MZI", "HDD Western Digital"], store: 'Centro' },
-        { saleDate: new Date(2019, 1, 7), seller: "Sheryl", pieces: ["Monitor GPRS 3000", "RAM Kingston"], store: 'Caballito' },
-        { saleDate: new Date(2019, 1, 14), seller: "Ada", pieces: ["Motherboard ASUS 1200", "HDD Toshiba"], store: 'Centro' },
-    ],
-    prices: [
-        { piece: "Monitor GPRS 3000", price: 200 },
-        { piece: "Motherboard ASUS 1500", price: 120 },
-        { piece: "Monitor ASC 543", price: 250 },
-        { piece: "Motherboard ASUS 1200", price: 100 },
-        { piece: "Motherboard MZI", price: 30 },
-        { piece: "HDD Toshiba", price: 90 },
-        { piece: "HDD Western Digital", price: 75 },
-        { piece: "RAM Kingston", price: 110 },
-        { piece: "RAM Kingston Fury", price: 230 }
-    ],
-    stores: ['Centro','Caballito']
-    };
+let savedStore = JSON.parse(localStorage.getItem('myPcStore'))
+if (savedStore.sales.length){
+    store = savedStore
+} else {
+    store = {
+        sellers: ["Ada", "Grace", "Hedy", "Sheryl"],
+        sales: [// tener en cuenta que Date guarda los meses del 0 (enero) al 11 (diciembre)
+            { saleDate: new Date(2019, 1, 4), seller: "Grace", pieces: ["Monitor GPRS 3000", "Motherboard ASUS 1500"], store: 'Centro' },
+            { saleDate: new Date(2019, 0, 1), seller: "Ada", pieces: ["Monitor GPRS 3000", "Motherboard ASUS 1500"], store: 'Centro' },
+            { saleDate: new Date(2019, 0, 2), seller: "Grace", pieces: ["Monitor ASC 543", "Motherboard MZI"], store: 'Centro' },
+            { saleDate: new Date(2019, 0, 10), seller: "Ada", pieces: ["Monitor ASC 543", "Motherboard ASUS 1200"], store: 'Centro' },
+            { saleDate: new Date(2019, 0, 12), seller: "Grace", pieces: ["Monitor GPRS 3000", "Motherboard ASUS 1200"], store: 'Centro' },
+            { saleDate: new Date(2019, 1, 12), seller: "Hedy", pieces: ["Monitor GPRS 3000", "HDD Toshiba"], store: 'Centro' }, 
+            { saleDate: new Date(2019, 1, 24), seller: "Shery", pieces: ["Motherboard ASUS 1200", "HDD Western Digital"], store: 'Caballito' },
+            { saleDate: new Date(2019, 1, 1), seller: "Ada", pieces: ["Motherboard MZI", "RAM Kingston Fury"], store: 'Centro' },
+            { saleDate: new Date(2019, 1, 11), seller: "Grace", pieces: ["Monitor ASC 543", "RAM Kingston"], store: 'Caballito' },
+            { saleDate: new Date(2019, 1, 15), seller: "Ada", pieces: ["Motherboard ASUS 1200", "RAM Kingston Fury"], store: 'Centro' },
+            { saleDate: new Date(2019, 1, 12), seller: "Hedy", pieces: ["Motherboard ASUS 1500", "HDD Toshiba"], store: 'Caballito' },
+            { saleDate: new Date(2019, 1, 21), seller: "Grace", pieces: ["Motherboard MZI", "RAM Kingston"], store: 'Centro' },
+            { saleDate: new Date(2019, 1, 8), seller: "Sheryl", pieces: ["Monitor ASC 543", "HDD Western Digital"], store: 'Centro' },
+            { saleDate: new Date(2019, 1, 16), seller: "Sheryl", pieces: ["Monitor GPRS 3000", "RAM Kingston Fury"], store: 'Centro' },
+            { saleDate: new Date(2019, 1, 27), seller: "Hedy", pieces: ["Motherboard ASUS 1200", "HDD Toshiba"], store: 'Caballito' },
+            { saleDate: new Date(2019, 1, 22), seller: "Grace", pieces: ["Monitor ASC 543", "HDD Western Digital"], store: 'Centro' },
+            { saleDate: new Date(2019, 1, 5), seller: "Ada", pieces: ["Motherboard ASUS 1500", "RAM Kingston"], store: 'Centro' },
+            { saleDate: new Date(2019, 1, 1), seller: "Grace", pieces: ["Motherboard MZI", "HDD Western Digital"], store: 'Centro' },
+            { saleDate: new Date(2019, 1, 7), seller: "Sheryl", pieces: ["Monitor GPRS 3000", "RAM Kingston"], store: 'Caballito' },
+            { saleDate: new Date(2019, 1, 14), seller: "Ada", pieces: ["Motherboard ASUS 1200", "HDD Toshiba"], store: 'Centro' }],
+        prices: [
+            { piece: "Monitor GPRS 3000", price: 200 },
+            { piece: "Motherboard ASUS 1500", price: 120 },
+            { piece: "Monitor ASC 543", price: 250 },
+            { piece: "Motherboard ASUS 1200", price: 100 },
+            { piece: "Motherboard MZI", price: 30 },
+            { piece: "HDD Toshiba", price: 90 },
+            { piece: "HDD Western Digital", price: 75 },
+            { piece: "RAM Kingston", price: 110 },
+            { piece: "RAM Kingston Fury", price: 230 }],
+        stores: ['Centro','Caballito']
+    }
+}
 
 // creo un array con las propiedades del objeto donde guardo la información de la tienda
 var storeProperties = Object.keys(store)
@@ -80,6 +82,7 @@ const setSaleElement = (select,containerId) => {
     container.appendChild(saleElement)
 }
 
+// muestra la fecha de la venta
 const setSaleDate = () => {
     let actualDate = new Date()
     let container = document.getElementById('saleDate')
@@ -119,6 +122,7 @@ const addBtn = (containerElem,btnText,btnId,btnAttribute,btnFunction) => {
     container.appendChild(btn)
 }
 
+// inicializa los elementos de la pantalla de ventas
 const setElements = () => {
     setSelects();
     addBtn('pieceSelect','Agregar Pieza','addPiece','onclick','addPiece()');
@@ -126,7 +130,6 @@ const setElements = () => {
 }
 //Precio maquina (para generar ventas)
 const pcPriceC = (piecesList) => {
-    // debugger;
     saleTotalPrice = 0
     piecesList.forEach(e => {
         saleTotalPrice += e.price
@@ -135,7 +138,9 @@ const pcPriceC = (piecesList) => {
 }
 //Precio maquina (report)
 const pcPrice = sale => 
-sale.length > 0 ? sale.map(e => store.prices.find(({ piece }) => e === piece).price).reduce((a, b) => a + b) : 0
+    sale.length > 0 
+    ? sale.map(e => store.prices.find(({ piece }) => e === piece).price).reduce((a, b) => a + b) 
+    : 0
 
 const showPieceList = (rowContent) => {
     let container =document.getElementById('piecesDetails')
@@ -161,7 +166,6 @@ const showPieceList = (rowContent) => {
 }
 
 const showSaleItems = () => {
-
     showPieceList(piecesList)
     let totalContainer = document.getElementById('saleTotal')
     totalContainer.innerHTML=''
@@ -186,7 +190,6 @@ const addPiece = () => {
     sale.piece = selectedPiece
     sale.price = findPrice(prices,selectedPiece)    
     piecesList.push(sale)
-    // console.log(piecesList)
     showSaleItems()   
 }
 
@@ -212,28 +215,26 @@ const addSale = () => {
     actualSale.pieces = piecesList.map(e => e.piece)
     store.sales.push(actualSale)
     debugger;
-    console.log (store.sales)
-
-    let aux = JSON.stringify(store)
-    localStorage.setItem('myPcStore', aux)
-
+    console.log (`se acaba de agregar esta venta al histórico ${store.sales[store.sales.length-1]}`)
+    setLS(store,'myPcStore')
     clearOptions()
     clearActualSale()
 }
 
+// agrega la info a localstorage para que se mantenga la actividad
+const setLS = (itemToStore, localVarName) => {
+    let aux = JSON.stringify(itemToStore)
+    localStorage.setItem(localVarName, aux)
+}
+
+
 // Chequea Local Storage
-const checkStorage = () => {
+const checkLS = () => {
     let storedSales = localStorage.getItem('myPcStore')
     console.log(storedSales)
 }
 
-// let myPcStored
-const loadLocalStorage = storedItem => {
-    debugger;
-    let savedStore = JSON.parse(localStorage.getItem(storedItem))
-    console.log(savedStore)
 
-}
 
 //2. cantidadVentasComponente(componente) = qtySoldByPiece. Calcula la cantidad de Ventas por Componente.
 
@@ -243,13 +244,9 @@ const qtySoldByPiece = component => {
     const totalSoldComponents = totalSales.filter(e=>e===component).length
     return totalSoldComponents
 }
-// imprime respuesta para dos componentes:
-console.log(qtySoldByPiece("Monitor ASC 543"));
-console.log(qtySoldByPiece("Monitor GPRS 3000"));
 
 
 //6. componenteMasVendido() = mostSoldPiece. Calcula cuál fue el componente más vendido.
-
 const mostSoldPiece = () =>{
     let soldComponent = []
     let nameComponent
@@ -262,10 +259,8 @@ const mostSoldPiece = () =>{
     })
     return nameComponent
     }
-    console.log(mostSoldPiece()); // Monitor GPRS 3000 ó Motherboard ASUS 1200
 
-
-//7. huboVentas(mes, anio) = areThereSales. Indica si hubo ventas en un mes determinado.
+//7. huboVentas(anio,mes) = areThereSales. Indica si hubo ventas en un mes determinado.
 
 const areThereSales = (year,month)=> {
     const togetMonth=month-1
@@ -273,28 +268,16 @@ const areThereSales = (year,month)=> {
     hubo?console.log(`Hubo ventas en el mes ${month} de ${year}`)
         :console.log(`No hubo ventas en el mes ${month} de ${year}`)
 }
-//imprime resultado
-const year=2019
-const month =3
-areThereSales (year,month)
 
 //Mejor vendedora histórica
 const bestSeller = () =>{
-  let vendor = store.sellers.map(name =>{
+  let vendor = store.sellers.map(name => {
     return { name:name, sales:pcPrice(store.sales.filter(({seller})=>seller===name).map(({pieces})=>pieces).flat())}
   })
   let bestVendor = Math.max(...vendor.map(({sales})=>sales).flat())
   let a = vendor.filter(({sales})=> sales>= bestVendor).map(({name})=>name).flat()
   return a
 }
-//probando
-console.log(`(bestSeller)La mejor vendedora de la historia es ${bestSeller()}`)
-
-//ventasVendedora(nombre) con la misma formula de monthSale
-
-/*const sellerSales = name => 
-  pcPrice(store.sales.filter(({seller})=>seller===name).map(({pieces})=> pieces).flat())
-*/
 
 // funcion para calcular el total de ventas por vendedora
 const sellerSales = (seller) =>{
@@ -307,8 +290,4 @@ const sellerSales = (seller) =>{
   })
   return totalSalesSeller
 }
-
-//probando
-const nombre = "Ada"
-console.log(`(sales) Las ventas desde el inicio de ${nombre} son ARS ${sellerSales(nombre)}`)
 
