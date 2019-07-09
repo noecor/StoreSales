@@ -124,8 +124,8 @@ const setElements = () => {
     addBtn('pieceSelect','Agregar Pieza','addPiece','onclick','addPiece()');
     setSaleDate();
 }
-
-const pcPrice = (piecesList) => {
+//Precio maquina (para generar ventas)
+const pcPriceC = (piecesList) => {
     // debugger;
     saleTotalPrice = 0
     piecesList.forEach(e => {
@@ -133,6 +133,9 @@ const pcPrice = (piecesList) => {
     })
     return saleTotalPrice
 }
+//Precio maquina (report)
+const pcPrice = sale => 
+sale.length > 0 ? sale.map(e => store.prices.find(({ piece }) => e === piece).price).reduce((a, b) => a + b) : 0
 
 const showPieceList = (rowContent) => {
     let container =document.getElementById('piecesDetails')
@@ -163,7 +166,7 @@ const showSaleItems = () => {
     let totalContainer = document.getElementById('saleTotal')
     totalContainer.innerHTML=''
     let totalPriceItem = document.createElement('p')
-    totalPriceItem.innerText = `Precio Total de la Venta: ${pcPrice(piecesList)}`
+    totalPriceItem.innerText = `Precio Total de la Venta: ${pcPriceC(piecesList)}`
     totalContainer.appendChild(totalPriceItem)
     addBtn('saleTotal','Registrar Venta','btnAddSale','onclick','addSale()')
 }
@@ -272,14 +275,37 @@ const year=2019
 const month =3
 areThereSales (year,month)
 
+//Mejor vendedora histórica
+const bestSeller = () =>{
+  let vendor = store.sellers.map(name =>{
+    return { name:name, sales:pcPrice(store.sales.filter(({seller})=>seller===name).map(({pieces})=>pieces).flat())}
+  })
+  let bestVendor = Math.max(...vendor.map(({sales})=>sales).flat())
+  let a = vendor.filter(({sales})=> sales>= bestVendor).map(({name})=>name).flat()
+  return a
+}
+//probando
+console.log(`(bestSeller)La mejor vendedora de la historia es ${bestSeller()}`)
+
+//ventasVendedora(nombre) con la misma formula de monthSale
+
+/*const sellerSales = name => 
+  pcPrice(store.sales.filter(({seller})=>seller===name).map(({pieces})=> pieces).flat())
+*/
+
 // funcion para calcular el total de ventas por vendedora
 const sellerSales = (seller) =>{
-    store.sales.forEach( sale => { 
-        if(sale.seller === seller){
-            let salePieces = sale.pieces
-            let salePrice = pcPrice(salePieces)
-            totalSalesSeller += salePrice
-        }
-    })
-    return totalSalesSeller
-  }
+  store.sales.forEach( sale => { 
+      if(sale.seller === seller){
+          let salePieces = sale.pieces
+          let salePrice = pcPrice(salePieces)
+          totalSalesSeller += salePrice
+      }
+  })
+  return totalSalesSeller
+}
+
+//probando
+const nombre = "Ada"
+console.log(`(sales) Las ventas desde el inicio de ${nombre} son ARS ${sellerSales(nombre)}`)
+
