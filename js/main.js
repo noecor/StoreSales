@@ -45,7 +45,8 @@ const monthsNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Jul
 const weekDays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
 const piecesList = []
 const { prices } = store
-
+//------------------REPORT.HTML---------------------
+//------------------MONTH-REPORT
 //1.precioMaquina(componentes): 
 const pcPrice = sale => sale.length > 0 ? sale.map(e => store.prices.find(({ piece }) => e === piece).price).reduce((a, b) => a + b) : 0
 //probando
@@ -190,6 +191,7 @@ const initialize = () => {
   setSecondSelects(store.sellers, "sellers")
   setSecondSelects(store.stores, "bstore")
 }
+//------------------MONTH-REPORT-END-------------------
 
 const addSale = () => {    
     const actualSale = { saleDate: new Date(), seller:'', pieces: [], store: '' }
