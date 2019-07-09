@@ -215,7 +215,7 @@ const addSale = () => {
     console.log (store.sales)
 
     let aux = JSON.stringify(store)
-    window.localStorage.setItem('store', aux)
+    localStorage.setItem('myPcStore', aux)
 
     clearOptions()
     clearActualSale()
@@ -223,13 +223,16 @@ const addSale = () => {
 
 // Chequea Local Storage
 const checkStorage = () => {
-    let storedSales = window.localStorage.getItem('store')
+    let storedSales = localStorage.getItem('myPcStore')
     console.log(storedSales)
 }
 
+// let myPcStored
 const loadLocalStorage = storedItem => {
-    let retrievedItem = window.localStorage.getItem(storedItem)
-    jsItem = JSON.parse(retrievedItem)
+    debugger;
+    let savedStore = JSON.parse(localStorage.getItem(storedItem))
+    console.log(savedStore)
+
 }
 
 //2. cantidadVentasComponente(componente) = qtySoldByPiece. Calcula la cantidad de Ventas por Componente.
