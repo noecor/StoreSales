@@ -208,10 +208,19 @@ const addSale = () => {
     store.sales.push(actualSale)
     debugger;
     console.log (store.sales)
+
+    let aux = JSON.stringify(actualSale)
+    window.localStorage.setItem('actualSale', aux)
+
     clearOptions()
     clearActualSale()
 }
 
+// Chequea Local Storage
+const checkStorage = () => {
+    let storedSales = window.localStorage.getItem('actualSale')
+    console.log(storedSales)
+}
 
 //2. cantidadVentasComponente(componente) = qtySoldByPiece. Calcula la cantidad de Ventas por Componente.
 
@@ -252,6 +261,7 @@ const areThereSales = (year,month)=> {
         :console.log(`No hubo ventas en el mes ${month} de ${year}`)
 }
 //imprime resultado
-const anio=2019
-const mes =3
-areThereSales (anio,mes)
+const year=2019
+const month =3
+areThereSales (year,month)
+
