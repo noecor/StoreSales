@@ -22,46 +22,60 @@ time, mark, audio, video {
 }
 
 body {
-  font-family: 'Lato', sans-serif;
-  margin: 10px 20px;
-  padding: 10px 20px;
+  font-family: "Lato", sans-serif;
   background-color: #F2F3F4;
 }
 
 .mainContainer {
-  width: 80%;
+  width: 100%;
   margin: 0px auto;
+  background-image: url(../images/misceleana.png);
+  background-size: cover;
+  height: 100vh;
+  position: relative;
 }
 
-.buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
+.logo {
+  position: absolute;
+  left: 40%;
+  top: 35%;
+}
+
+.primarySection {
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  background-color: white;
-  -webkit-box-shadow: 0px 1px 2px rgba(44, 62, 80, 0.1);
-          box-shadow: 0px 1px 2px rgba(44, 62, 80, 0.1);
-  height: 50px;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0 auto;
+  width: 50%;
+  min-width: 600px;
+  max-width: 900px;
+}
+.primarySection .sale, .primarySection .report {
+  margin-top: 55%;
+}
+.primarySection .sale .intro, .primarySection .report .intro {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #f9ae3b;
+  box-shadow: 0px 7px 10px rgba(42, 57, 75, 0.315);
+  height: 20px;
   width: auto;
   border-radius: 5px;
-  margin-bottom: 10px;
-  padding: 10px;
-  font-weight: bold;
+  padding: 5px;
   text-align: center;
   line-height: 1;
   font-size: 17px;
-  -webkit-transition: all .15s ease-in-out;
-  transition: all .15s ease-in-out;
+  color: white;
+  transition: all 0.5s ease-in;
+}
+:hover .primarySection .sale .intro, :hover .primarySection .report .intro {
+  background-color: #50948d;
 }
 
 .button {
   display: inline-block;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
+
 /*# sourceMappingURL=style.css.map */
