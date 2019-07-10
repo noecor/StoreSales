@@ -22,19 +22,22 @@
     </header>
     <div class='container'>
         <section id="reportSelection" class='reports'>
-                <h2>Seleccione el Reporte deseado</h2>
-                <div class="monthReport">
-                    <button type="button" class="btn btn-SellerMonth" onclick="btnSellerMonth()">Vendedora del Mes</button>
-                    <button type="button" class="btn btn-StoreMonth" onclick="btnStoreMonth()">Sucursal del Mes</button>
-                    <button type="button" class="btn btn-MonthSales" onclick="btnMonthSales()">Ventas por Mes</button>
-                    <button type="button" class="btn btn-qtySoldByPiece" onclick="btnQtySoldByPiece()">Ventas por Componente</button>
-                    <button type="button" class="btn btn-mostSoldPiece" onclick="btnMostSoldPiece()">Componente más Vendido</button>
-                    <button type="button" class="btn btn-areThereSales" onclick="btnAreThereSales()">Hubo Ventas?</button>
-                </div>
-                <div class="renderReports">
-                    <button type="button" class="btn btn-MonthSales" onclick="btnMonthSales()">Ventas por Mes</button>
-
-                </div>
+            <h2>Seleccione el Reporte deseado</h2>
+            <div class="monthReport">
+                <button type="button" class="btn btn-SellerMonth" onclick="btnSellerMonth()">Vendedora del Mes</button>
+                <button type="button" class="btn btn-StoreMonth" onclick="btnStoreMonth()">Sucursal del Mes</button>
+                <button type="button" class="btn btn-MonthSales" onclick="btnMonthSales()">Ventas por Mes</button>
+                <button type="button" class="btn btn-qtySoldByPiece" onclick="btnQtySoldByPiece()">Ventas por Componente</button>
+                <button type="button" class="btn btn-mostSoldPiece" onclick="btnMostSoldPiece()">Componente más Vendido</button>
+                <button type="button" class="btn btn-areThereSales" onclick="btnAreThereSales()">Hubo Ventas?</button>
+                <button type="button" class="btn btn-sellerSales" onclick="btnSellerSales()">Ventas por Vendedora</button>
+                <button type="button" class="btn btn-storeSales" onclick="btnStoreSales()">Ventas por Sucursal</button>
+            </div>        
+            <div class="renderReports">
+                <button type="button" class="btn btn-storeReport" onclick="btnStoreReport()">Reporte por Sucursal</button>
+                <button type="button" class="btn btn-monthReport" onclick="btnMonthReport()">Reporte por Mes</button>
+                <button type="button" class="btn btn-gralReport" onclick="btnGralReport()">Reporte General</button>
+            </div>
         </section>
         <section id="resultsViewer" class="results">
             <H2 id="reportName" class="reportTitle"></H2>
