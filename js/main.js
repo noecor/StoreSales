@@ -51,7 +51,7 @@ let saleTotalPrice = 0
 let totalSalesSeller = 0
 
 // crea los selects de la sección que define vendedora y sucursal y componentes
-const setSelects = () => {
+const setSaleSelects = () => {
     storeProperties.forEach (e => {
         if (e === 'sellers' || e === "stores") {
             let container = document.getElementById('primarySelects')
@@ -71,6 +71,7 @@ const setSelects = () => {
         }
     })
 }
+
 
 // establezco en pantalla los elementos de la venta
 const setSaleElement = (select,containerId) => {
@@ -104,6 +105,7 @@ const fillSelects = (list,select) => {
     })
 }
 
+
 // crea las opciones de cada select
 const createOption = elem => {
     let option = document.createElement('option')
@@ -124,7 +126,7 @@ const addBtn = (containerElem,btnText,btnId,btnAttribute,btnFunction) => {
 
 // inicializa los elementos de la pantalla de ventas
 const setElements = () => {
-    setSelects();
+    setSaleSelects();
     addBtn('pieceSelect','Agregar Pieza','addPiece','onclick','addPiece()');
     setSaleDate();
 }
@@ -214,7 +216,6 @@ const addSale = () => {
     actualSale.saleDate = new Date (todayYear,todayMonth,todayDay)
     actualSale.pieces = piecesList.map(e => e.piece)
     store.sales.push(actualSale)
-    debugger;
     console.log (`se acaba de agregar esta venta al histórico ${store.sales[store.sales.length-1]}`)
     setLS(store,'myPcStore')
     clearOptions()
