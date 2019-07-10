@@ -49,29 +49,47 @@ const piecesList = []
 const {prices} = store
 let saleTotalPrice = 0
 let totalSalesSeller = 0
+const {stores} = store
+const {sellers} = store
+const piecesRef = prices.map ( e => e.piece)
+console.log(piecesRef) 
 
 // crea los selects de la sección que define vendedora y sucursal y componentes
 const setSaleSelects = () => {
-    storeProperties.forEach (e => {
-        if (e === 'sellers' || e === "stores") {
-            let container = document.getElementById('primarySelects')
-            let select = document.createElement('select')
-            select.id = e
-            select.setAttribute('onchange',`setSaleElement(this,'saleTopLine')`)
-            container.appendChild(select)
-            selectContent = store[e];
-            fillSelects(selectContent,select)
-        } else if (e === "prices"){
-            let container = document.getElementById('pieceSelect')
-            let select = document.createElement('select')
-            select.id = 'pieces'
-            container.appendChild(select)
-            let selectContent = store[e].map(item => item.piece)
-            fillSelects(selectContent,select)
-        }
-    })
+    setSelect(sellers,'primarySelects','sellers','onchange',`setSaleElement(this,'saleTopLine')`)
+    setSelect(stores,'primarySelects','stores','onchange',`setSaleElement(this,'saleTopLine')`)
+    setSelect(piecesRef,'pieceSelect','pieces','onchange','')
+    // let pieces
+    // setSelect(pieces = prices.map(piece=>prices.piece),'piecesSelect','pieces')
+
+    // storeProperties.forEach (e => {
+    //     if (e === 'sellers' || e === "stores") {
+    //         let container = document.getElementById('primarySelects')
+    //         let select = document.createElement('select')
+    //         select.id = e
+    //         select.setAttribute('onchange',`setSaleElement(this,'saleTopLine')`)
+    //         container.appendChild(select)
+    //         selectContent = store[e];
+    //         fillSelects(selectContent,select)
+    //     } else if (e === "prices"){
+    //         let container = document.getElementById('pieceSelect')
+    //         let select = document.createElement('select')
+    //         select.id = 'pieces'
+    //         container.appendChild(select)
+    //         let selectContent = store[e].map(item => item.piece)
+    //         fillSelects(selectContent,select)
+    //     }
+    // })
 }
 
+const setSelect = (selectContent,container,selectId,attribute,attFunction) => {
+    let selectContainer = document.getElementById(container)
+    let select = document.createElement('select')
+    select.id = selectId
+    select.setAttribute(attribute,attFunction)
+    selectContainer.appendChild(select)
+    fillSelects(selectContent,select)
+}
 
 // establezco en pantalla los elementos de la venta
 const setSaleElement = (select,containerId) => {
