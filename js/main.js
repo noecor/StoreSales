@@ -349,3 +349,7 @@ const sellerSales = name =>
 // //probando
 // const nombre = "Ada"
 // console.log(`(sales) Las ventas desde el inicio de ${nombre} son ARS ${sellerSales(nombre)}`)
+
+const btnSellerMonth = () => {
+  // setSelect(monthsNames,'resultsViewer','months','onclick',`''`)
+}
