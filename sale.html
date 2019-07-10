@@ -11,57 +11,55 @@
 </head>
 
 <body onload="setElements()">
-    <header>
-        <a href="index.html" class="logo">Logo</a>
-        <nav>
-            <ul>
-                <li><a href="sale.html"> Ventas </a></li>
-                <li><a href="report.html"> Reportes </a></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="container">
-        <section id="primarySelects">
-            <h2>Selecciona Vendedora y Sucursal</h2>
-        </section>
-        <section id="pieceSelect">
-            <h2>Selecciona los componentes</h2>
-        </section>
-        <section id="saleView">
-            <h2>Detalles de esta venta</h2>
-            <div id="saleTopLine">
-                <div id="saleDate">
-                    
+    <div class="mainContainer">
+        <header>
+            <a href="index.html" class='logoHeader'><img src="images/logotipo-15.svg" width="80%"></a>
+            <nav class='primarySection'>
+                <a href="sale.html" class='sale'>
+                    <p class='intro'>Ventas</p>
+                </a>
+                <a href="report.html" class='report'>
+                    <p class='intro'>Reportes</p>
+                </a>
+            </nav>
+        </header>
+        <div class="container">
+            <section id="primarySelects">
+                <h2>Selecciona Vendedora y Sucursal</h2>
+            </section>
+            <section id="pieceSelect">
+                <h2>Selecciona los componentes</h2>
+            </section>
+            <section id="saleView">
+                <h2>Detalles de esta venta</h2>
+                <div id="saleTopLine">
+                    <div id="saleDate">
+
+                    </div>
+
                 </div>
+                <div id="salePieces">
+                    <table id="salePiecesTable">
+                        <thead id="piecesChar">
+                            <tr>
+                                <th>Renglón</th>
+                                <th>Descripción</th>
+                                <!-- <th>Precio Unitario</th> -->
+                                <!-- <th>Cantidad</th> -->
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody id="piecesDetails">
 
-            </div>
-            <div id="salePieces">
-                <table id="salePiecesTable">
-                    <thead id="piecesChar">
-                        <tr>
-                            <th>Renglón</th>
-                            <th>Descripción</th>
-                            <!-- <th>Precio Unitario</th> -->
-                            <!-- <th>Cantidad</th> -->
-                            <th>Precio</th>
-                        </tr>
-                    </thead>
-                    <tbody id="piecesDetails">
+                        </tbody>
+                    </table>
+                </div>
+                <div id="saleTotal">
 
-                    </tbody>
-                </table>
-            </div>
-            <div id="saleTotal">
-
-            </div>
-        </section>
+                </div>
+            </section>
+        </div>
     </div>
-    <footer>
-        <nav>
-            <ul class='socialMedia'>
-
-            </ul>
-        </nav>
-    </footer>
 </body>
+
 </html>

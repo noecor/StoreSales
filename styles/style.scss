@@ -59,11 +59,18 @@ body{
     height: 100vh;
     position: relative;
 }
+.logoHeader {
+    position: absolute;
+    left: 75%;
+    top: 5%;
+}
+//logo index.html
 .logo {
     position: absolute;
     left: 40%;
     top: 35%;
 }
+
 .primarySection {
     display: flex;
     flex-direction: row;
@@ -82,7 +89,50 @@ body{
     }
 }
 }
+nav.primarySection {
+    display: flex;
+    justify-content: start;
+    margin: 0 10px;
+    width: 10%;
+    .sale,.report{
+        margin-top: 5%;
+        margin-left: 45px;
+        .intro {
+            @include buttons;
+            :hover & {
+                background-color: $verde;
+        }
+    }
+}
+}
 .button{
     display: inline-block;
     justify-content: space-between;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 100px 50px;
+    width: 50vh;
+    min-width: 600px;
+    max-width: 900px;
+    h2{
+        background-color: $verde;
+        height: 20px;
+        border-radius: 5px;
+        padding: 5px;
+        line-height: 1;
+        font-size: 20px;
+        color: white;
+    }
+    button {
+        background-color: #f9ae3b;
+        margin: 10px 10px 10px 8px;
+        height: 35px;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 15px;
+        font-weight: bold;
+        color: white;
+    }
 }
