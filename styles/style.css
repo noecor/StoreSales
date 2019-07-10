@@ -17,6 +17,65 @@ time, mark, audio, video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  background-color: #F2F3F4;
+}
+
+.mainContainer {
+  width: 100%;
+  margin: 0px auto;
+  background-image: url(../images/misceleana.png);
+  background-size: cover;
+  height: 100vh;
+  position: relative;
+}
+
+.logo {
+  position: absolute;
+  left: 40%;
+  top: 35%;
+}
+
+.primarySection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0 auto;
+  width: 50%;
+  min-width: 600px;
+  max-width: 900px;
+}
+.primarySection .sale, .primarySection .report {
+  margin-top: 55%;
+}
+.primarySection .sale .intro, .primarySection .report .intro {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #f9ae3b;
+  box-shadow: 0px 7px 10px rgba(42, 57, 75, 0.315);
+  height: 20px;
+  width: auto;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  line-height: 1;
+  font-size: 17px;
+  color: white;
+  transition: all 0.5s ease-in;
+}
+:hover .primarySection .sale .intro, :hover .primarySection .report .intro {
+  background-color: #50948d;
+}
+
+.button {
+  display: inline-block;
+  justify-content: space-between;
 }
 
 /*# sourceMappingURL=style.css.map */

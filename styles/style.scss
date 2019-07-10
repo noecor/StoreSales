@@ -12,18 +12,77 @@ figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
   margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  list-style: none;
+  text-decoration: none;
 }
-@mixin font-text {
- font-family: 'Open Sans', sans-serif;
-} 
-@mixin font-title {
- font-family: 'Ubuntu', sans-serif;
+
+// VARIABLES
+$negro: #111111;
+$gris: #a7a9ac;
+$naranja: #f9ae3b;
+$rojo: #e27b32;
+$verde: #50948d;
+$celeste:#77c1c7;
+
+//MIXINS
+@mixin buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: $naranja;
+    box-shadow: 0px 7px 10px rgba(42, 57, 75, 0.315);
+    height: 20px;
+    width: auto;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+    line-height: 1;
+    font-size: 17px;
+    color: white;
+    transition: all 0.5s ease-in;
 }
-body {
-    
+
+body{
+    font-family: 'Lato', sans-serif;
+    background-color: #F2F3F4 
+}
+.mainContainer {
+    width: 100%;
+    margin: 0px auto;
+    background-image: url(../images/misceleana.png);
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+}
+.logo {
+    position: absolute;
+    left: 40%;
+    top: 35%;
+}
+.primarySection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0 auto;
+    width: 50%;
+    min-width: 600px;
+    max-width: 900px;
+    .sale,.report{
+        margin-top: 55%;
+        .intro {
+            @include buttons;
+            :hover & {
+                background-color: $verde;
+        }
+    }
+}
+}
+.button{
+    display: inline-block;
+    justify-content: space-between;
 }
