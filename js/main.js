@@ -141,6 +141,7 @@ const showPieceList = (rowContent) => {
   let container = document.getElementById('piecesDetails')
   container.innerHTML = ''
   rowContent.forEach(e => {
+    //los valores de estas variables se podrían asignar directamente en el innerText de los td
     let c1LineId = e.lineId
     let c2PieceDesc = e.piece
     let c3Price = e.price
@@ -209,7 +210,7 @@ const addSale = () => {
   actualSale.saleDate = new Date(todayYear, todayMonth, todayDay)
   actualSale.pieces = piecesList.map(e => e.piece)
   store.sales.push(actualSale)
-  debugger;
+  debugger; //no dejar debuggers en el código final
   console.log(`se acaba de agregar esta venta al histórico ${store.sales[store.sales.length - 1]}`)
   setLS(store, 'myPcStore')
   clearOptions()
@@ -285,3 +286,7 @@ const sellerSales = (seller) => {
   })
   return totalSalesSeller
 }
+
+/*
+No están todas las funciones de la consigna. 
+*/
