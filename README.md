@@ -1,6 +1,7 @@
-# Tp3KarinMariNoeSofi
+# Store Sales
 Karin + Mariana + Noelia + Sofia
 
+Puedes ver este proyecto funcionando aquí: https://noecor.github.io/StoreSales/.
 Convenciones:
 • Estilos en SASS
 • Js en ES6
